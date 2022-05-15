@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "624852659251",
+    "project_id": "lyf-on",
+    "storage_bucket": "lyf-on.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624852659251:android:f6f9493fa502b2934f8746",
+        "android_client_info": {
+          "package_name": "me.astero.lyfon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624852659251-38n13r7v4k9fjbtb1329343piohhgetr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4tSCAg_E-4M1IbfGv9KCGOYgbhQseS7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624852659251-38n13r7v4k9fjbtb1329343piohhgetr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

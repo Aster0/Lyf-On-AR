@@ -11,6 +11,7 @@ ARApp/[Bb]uilds/
 ARApp/[Ll]ogs/
 ARApp/[Uu]ser[Ss]ettings/
 ARApp/Assets/Firebase/Plugins/x86_64/
+ARApp/Packages
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
