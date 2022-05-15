@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="gcm_defaultSenderId" translatable="false">624852659251</string>
+  <string name="google_storage_bucket" translatable="false">lyf-on.appspot.com</string>
+  <string name="project_id" translatable="false">lyf-on</string>
+  <string name="google_api_key" translatable="false">AIzaSyD4tSCAg_E-4M1IbfGv9KCGOYgbhQseS7Y</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD4tSCAg_E-4M1IbfGv9KCGOYgbhQseS7Y</string>
+  <string name="google_app_id" translatable="false">1:624852659251:android:f6f9493fa502b2934f8746</string>
+  <string name="default_web_client_id" translatable="false">624852659251-38n13r7v4k9fjbtb1329343piohhgetr.apps.googleusercontent.com</string>
+</resources>
