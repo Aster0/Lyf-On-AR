@@ -15,7 +15,13 @@ It is made for hotel accommodation services like Lyf to strengthen and bring fun
 3) Shop/Point System (Buy rare collectibles using the points you have earned through completing of quests)
 
 
-![Splash_Screen](https://i.imgur.com/4MFqnwz.png) ![Main_Menu](https://i.imgur.com/lSuCLgD.png) ![AR_Screen](https://i.imgur.com/Lhra5Na.jpg)
 
-
-
+<p align="center">
+  <img width="200" height="400" src="https://i.imgur.com/4MFqnwz.png">
+</p>
+<p align="center">
+  <img width="200" height="400" src="https://i.imgur.com/lSuCLgD.png">
+</p>
+<p align="center">
+  <img width="400" height="600" src="https://i.imgur.com/Lhra5Na.jpg">
+</p>
