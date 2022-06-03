@@ -11,9 +11,13 @@ using Object = UnityEngine.Object;
 public class LoginSessionManager : MonoBehaviour
 {
 
+    
+    // GITHUB DOCUMENTATION LINK: https://github.com/Aster0/Lyf-On-AR/issues/1
 
+    // SESSION MANAGER MANAGES THE LOGIN SESSION OF THE USER. 
+    // ONCE THE USER LOGS IN, IT STORES ALL THE USER DETAILS FETCHED FROM FIREBASE LOCALLY WITHIN THE APPLICATION.
 
-    private enum AuthenticationType
+    private enum AuthenticationType // Whether it's registering or logging in.
     {
         
         REGISTER,
@@ -22,8 +26,8 @@ public class LoginSessionManager : MonoBehaviour
 
 
 
-    private AuthenticationType _authenticationType;
-    private Firebase.Auth.FirebaseAuth auth; 
+    private AuthenticationType _authenticationType; // determines the type of authentication
+    private Firebase.Auth.FirebaseAuth auth;  // to store an instance of FirebaseAuth.
 
 
     
@@ -39,12 +43,14 @@ public class LoginSessionManager : MonoBehaviour
 
     private void Awake()
     {
+        // basic initializations
         auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
     }
 
 
     private void Start()
     {
+        // basic initializations
 
         _gameManager = GameManager.Instance;
         _authenticationType = AuthenticationType.LOGIN;
@@ -61,31 +67,35 @@ public class LoginSessionManager : MonoBehaviour
         _backButton.SetActive(true);
     }
 
-    private void OnFinalized()
+    private void OnFinalized() // when the login/register button is pressed by the user
     {
 
 
         bool checkConfirmPassword = false;
 
-        if (_authenticationType == AuthenticationType.REGISTER)
+        if (_authenticationType == AuthenticationType.REGISTER) // if the user is trying to register
         {
-            checkConfirmPassword = checkConfirmPasswordField.text.Length == 0;
+            checkConfirmPassword = checkConfirmPasswordField.text.Length == 0; // if password length is 0, save true to checkConfirmPassword
         }
 
-        if (usernameField.text.Length == 0 || passwordField.text.Length == 0 || checkConfirmPassword)
+        if (usernameField.text.Length == 0 || passwordField.text.Length == 0 || checkConfirmPassword) // check if user and password fields are empty and confirm password.
         {
-            ErrorPopupManager.GeneratePopup("Please fill in all blanks before proceeding.");
+            ErrorPopupManager.GeneratePopup("Please fill in all blanks before proceeding."); // popup an error.
             return;
         }
 
 
 
-        if (_authenticationType == AuthenticationType.LOGIN)
+        if (_authenticationType == AuthenticationType.LOGIN) // if user pressed login
         {
             auth.SignInWithEmailAndPasswordAsync(usernameField.text, passwordField.text).ContinueWithOnMainThread(task => {
-                if (task.IsCanceled) {
+               
+                // we connect to firebase and try to login the user. Firebase will tell us if its incorrect or correct username & password.
                 
-                    ErrorPopupManager.GeneratePopup("Username and or password was incorrect.");
+                if (task.IsCanceled) {
+                    
+                
+                    ErrorPopupManager.GeneratePopup("Username and or password was incorrect."); // if incorrect, popup message
                     Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
 
 
@@ -94,7 +104,7 @@ public class LoginSessionManager : MonoBehaviour
                 }
                 if (task.IsFaulted) {
                 
-                    ErrorPopupManager.GeneratePopup("Username and or password was incorrect.");
+                    ErrorPopupManager.GeneratePopup("Username and or password was incorrect."); // if incorrect, popup message
                     Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
 
               
@@ -108,10 +118,10 @@ public class LoginSessionManager : MonoBehaviour
                     newUser.DisplayName, newUser.UserId);
 
                 
-                CacheUserData();
+                CacheUserData(); // this is how we cache the user data locally
                 
                      
-                CustomSceneManager.LoadScene("Resources/Scenes/Hub");
+                CustomSceneManager.LoadScene("Resources/Scenes/Hub"); // swap scenes
                 
        
 
@@ -131,13 +141,17 @@ public class LoginSessionManager : MonoBehaviour
         
         Firebase.Auth.FirebaseUser user = auth.CurrentUser;
         
-        DocumentReference docRef = db.Collection("users").Document(user.UserId);
+        DocumentReference docRef = db.Collection("users").Document(user.UserId); // we loop the user document, targeting the logged in user's id
         docRef.Listen(snapshot => {
             
             Debug.Log("Callback received document snapshot.");
             Debug.Log(String.Format("Document data for {0} document:", snapshot.Id));
 
-            User user = new User();
+            User user = new User(); // make a new instance of User object
+            
+            // and basically save all the details into the User Object. below.
+            // we save things like quests, stickers, points, levels, etc.
+            
             user.uuid = snapshot.Id;
             
             Dictionary<string, object> dict = snapshot.ToDictionary();

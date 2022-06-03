@@ -6,7 +6,7 @@ using UnityEngine.PlayerLoop;
 
 public class User {
 
-
+    // GITHUB DOCUMENTATION LINK: https://github.com/Aster0/Lyf-On-AR/issues/1
 
 
 
