@@ -20,7 +20,7 @@ public class Quest : ScriptableObject
     public bool IsInProgress { get; set; }
     public bool claimed { get; set; }
 
-    private void OnEnable()
+    private void OnEnable() // reset the values on enable
     {
         IsInProgress = false;
         currentValue = 0;
@@ -28,7 +28,7 @@ public class Quest : ScriptableObject
         claimed = false;
     }
 
-    public enum QuestType
+    public enum QuestType // whether it's a scanning quest or a chat quest
     {
         SCAN,
         CHAT
@@ -55,7 +55,7 @@ public class Quest : ScriptableObject
         public int rewardAmount; // for pts & exp rewards
         public Sticker targetedStickerReward; // for sticker rewards
         
-        public enum RewardType
+        public enum RewardType  // what type is the reward going to be?
         {
             EXP,
             POINTS,
@@ -63,7 +63,7 @@ public class Quest : ScriptableObject
         }
 
 
-        public void OnRewardClaim()
+        public void OnRewardClaim() // on the user claiming the reward
         {
             if (rewardType == RewardType.EXP)
             {

@@ -13,6 +13,10 @@ public class LoginSessionManager : MonoBehaviour
 
     
     // GITHUB DOCUMENTATION LINK: https://github.com/Aster0/Lyf-On-AR/issues/1
+    
+    // RESTFUL APIS:
+    // SIGNING INTO USER ACCOUNT: https://github.com/Aster0/Lyf-On-AR/issues/10
+    // RETRIEVING USER DATA: https://github.com/Aster0/Lyf-On-AR/issues/9
 
     // SESSION MANAGER MANAGES THE LOGIN SESSION OF THE USER. 
     // ONCE THE USER LOGS IN, IT STORES ALL THE USER DETAILS FETCHED FROM FIREBASE LOCALLY WITHIN THE APPLICATION.

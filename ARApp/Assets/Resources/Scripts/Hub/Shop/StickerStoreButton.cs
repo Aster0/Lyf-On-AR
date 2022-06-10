@@ -5,6 +5,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 
+// GITHUB DOCUMENTATION ISSUE FOUND HERE: https://github.com/Aster0/Lyf-On-AR/issues/5
 public class StickerStoreButton : MonoBehaviour
 {
 
@@ -41,7 +42,7 @@ public class StickerStoreButton : MonoBehaviour
     }
 
 
-    private void OnStorePurchase()
+    private void OnStorePurchase() // when the player buys an item
     {
 
         Debug.Log("PRESSED");
@@ -74,10 +75,10 @@ public class StickerStoreButton : MonoBehaviour
             int newPoints = _gameManager.user.details.points -
                             stickerStore.sticker.price;
             
-            _pointsManager.UpdatePointsText(newPoints);
+            _pointsManager.UpdatePointsText(newPoints); // update the new points visually
      
             
-            _gameManager.user.UpdatePlayerDetails(newPoints, User.UpdateType.POINTS);
+            _gameManager.user.UpdatePlayerDetails(newPoints, User.UpdateType.POINTS); // update the database with the new deducted points
 
             stickerStore.owned = true;
 
@@ -93,9 +94,4 @@ public class StickerStoreButton : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
