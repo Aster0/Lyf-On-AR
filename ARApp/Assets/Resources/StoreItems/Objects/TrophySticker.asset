@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3318ce75422bee43893c7c7dc1d7fe0, type: 3}
   m_Name: TrophySticker
   m_EditorClassIdentifier: 
-  stickerSprite: {fileID: 21300000, guid: 39cb718b4e58a824990a42bfdd53d454, type: 3}
+  sprite: {fileID: 21300000, guid: 39cb718b4e58a824990a42bfdd53d454, type: 3}
   price: 50
   purchasable: 1
+  storeType: 0

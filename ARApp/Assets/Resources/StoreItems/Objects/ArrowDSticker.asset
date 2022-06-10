@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3318ce75422bee43893c7c7dc1d7fe0, type: 3}
   m_Name: ArrowDSticker
   m_EditorClassIdentifier: 
-  stickerSprite: {fileID: 21300000, guid: 17f277506d457495bb0b4978ae7a7630, type: 3}
+  sprite: {fileID: 21300000, guid: bb1f807a207f50b488a543f9f5352894, type: 3}
   price: 60
   purchasable: 1
+  storeType: 0

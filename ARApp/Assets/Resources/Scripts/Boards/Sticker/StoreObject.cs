@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Store Object", menuName = "LyfOn/Sticker/New Store Object", order = 1)]
 public class StoreObject : ScriptableObject
 {
-    public Sprite stickerSprite;
+    public Sprite sprite;
 
     [Range(0,1000)]
     public int price;

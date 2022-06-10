@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3318ce75422bee43893c7c7dc1d7fe0, type: 3}
   m_Name: SpaceCatSticker
   m_EditorClassIdentifier: 
-  stickerSprite: {fileID: 21300000, guid: f0bfbd401ae63c243805e52d7d880ace, type: 3}
+  sprite: {fileID: 21300000, guid: f0bfbd401ae63c243805e52d7d880ace, type: 3}
   price: 10
   purchasable: 0
+  storeType: 0

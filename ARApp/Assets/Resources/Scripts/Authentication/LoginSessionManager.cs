@@ -240,16 +240,31 @@ public class LoginSessionManager : MonoBehaviour
              
                 StoreObject storeObj = (StoreObject) obj;
 
+                if (storeObj.storeType == StorePopulator.StoreType.AVATAR)
+                {
+                    // basically just adding all the avatars to cache.
+                    _gameManager.listOfAllAvatars.Add(storeObj);
+                    
+                    Debug.Log(storeObj + " STORE OBJECT");
+                }
+                
                 if (storeObj.price == 0)
                 {
 
-                    List<StoreObject> targetPlayerInventory;
+                    List<StoreObject> targetPlayerInventory = null;
                     if (storeObj.storeType == StorePopulator.StoreType.STICKER)
                         targetPlayerInventory = details.ownedStickers;
-                    else
-                        targetPlayerInventory = details.ownedAvatars;
                     
-                    targetPlayerInventory.Add(storeObj);
+                    else if(storeObj.storeType == StorePopulator.StoreType.AVATAR)
+                    {
+                        targetPlayerInventory = details.ownedAvatars;
+                    }
+
+                    
+                    if(targetPlayerInventory != null)
+                        targetPlayerInventory.Add(storeObj);
+                    
+                    
                 }
                  
             }

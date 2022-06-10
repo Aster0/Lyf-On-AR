@@ -35,7 +35,7 @@ public class StoreIcon : MonoBehaviour
             Destroy(GetComponent<Button>());
         }
 
-        icon.sprite = storeObj.stickerSprite;
+        icon.sprite = storeObj.sprite;
     }
 
     public void UpdateStoreItemStatus()

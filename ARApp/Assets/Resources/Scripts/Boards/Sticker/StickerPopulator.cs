@@ -18,7 +18,7 @@ public class StickerPopulator : MonoBehaviour
 
             StickerManager stickerManager = stickerObject.GetComponent<StickerManager>();
             
-            stickerManager.UpdateSticker(sticker.stickerSprite);
+            stickerManager.UpdateSticker(sticker.sprite);
         }
     }
 

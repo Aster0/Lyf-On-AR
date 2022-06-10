@@ -76,10 +76,10 @@ public class StorePopulator : MonoBehaviour
           
 
 
-                StoreIcon stickerStore = storeGameObject.GetComponent<StoreIcon>(); // get the stickerstore instance 
+                StoreIcon storeIcon = storeGameObject.GetComponent<StoreIcon>(); // get the store icon instance 
                 // from the current newly instantiated game object
             
-                stickerStore.UpdateStoreIcon(storeObj, owned); // update the sticker and the owned status.
+                storeIcon.UpdateStoreIcon(storeObj, owned); // update the sticker and the owned status.
             }
 
             

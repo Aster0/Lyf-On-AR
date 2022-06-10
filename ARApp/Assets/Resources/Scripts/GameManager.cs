@@ -28,12 +28,13 @@ public class GameManager : MonoBehaviour
 
 
     public GameObject popupPrefab, chatBoardPrefab, chatBoardStickerPrefab, stickerPrefab, stickerStorePrefab, 
-        questDefaultPrefab, questInProgressPrefab, questClaimPrefab, questClaimedPrefab;
+        questDefaultPrefab, questInProgressPrefab, questClaimPrefab, questClaimedPrefab, avatarPrefab;
     
     public User user { get; set; }
 
 
-    
+
+    public List<StoreObject> listOfAllAvatars = new List<StoreObject>();
     public string currentBoardName { get; set; }
     public string previousScenePath { get; set; }
     public bool animateLoadingScreen { get; set; }

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3318ce75422bee43893c7c7dc1d7fe0, type: 3}
-  m_Name: HeartSticker
+  m_Name: KnightAvatar
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 7ecdaf136fa240845b12a6284b626d07, type: 3}
-  price: 0
-  purchasable: 1
-  storeType: 0
+  sprite: {fileID: 21300000, guid: cae1908ef32d7457e8c9d9e772b22e61, type: 3}
+  price: 182
+  purchasable: 0
+  storeType: 1
