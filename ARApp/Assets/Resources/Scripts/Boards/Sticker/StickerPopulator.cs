@@ -7,7 +7,7 @@ public class StickerPopulator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Sticker sticker in GameManager.Instance.user.details.ownedStickers)
+        foreach (StoreObject sticker in GameManager.Instance.user.details.ownedStickers)
         {
             GameObject stickerObject = Instantiate(GameManager.Instance.stickerPrefab, new Vector3(0,0),
                 Quaternion.identity);

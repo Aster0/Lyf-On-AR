@@ -19,7 +19,8 @@ public class User {
         public int maxExp { get; set; }
 
 
-        public List<Sticker> ownedStickers { get; set; }
+        public List<StoreObject> ownedStickers { get; set; }
+        public List<StoreObject> ownedAvatars { get; set; }
         
         public List<Quest> inProgressQuests { get; set; }
         
@@ -43,7 +44,8 @@ public class User {
         EXP,
         LEVEL,
         STICKER,
-        QUEST
+        QUEST,
+        AVATAR
     }
 
     public void UpdatePlayerDetails(int newValue, UpdateType updateType)
@@ -149,7 +151,7 @@ public class User {
     }
 
     
-    public void UpdatePlayerDetails(Sticker targetSticker, UpdateType updateType) // for stickers
+    public void UpdatePlayerDetails(StoreObject targetStoreObj, UpdateType updateType) // for stickers
     {
 
       
@@ -159,60 +161,74 @@ public class User {
          *  updateField checks which details field we are updating, whether it
          *  being points, EXP, level, etc. (makes it dynamic)
          */
+
+
+
+        Dictionary<string, List<object>> storeItemsDict = new Dictionary<string, List<object>>();
+
+        List<object> storeItems = new List<object>();
         
+        Debug.Log(targetStoreObj.name + " TARGET");
         
-        if (updateType == UpdateType.STICKER)
+        string updateField = "stickers";
+
+        List<StoreObject> playerStoreObjectList;
+
+        if (updateType == UpdateType.AVATAR)
         {
-          
-            Dictionary<string, List<object>> stickersDict = new Dictionary<string, List<object>>();
-
-            List<object> stickers = new List<object>();
-            
-            Debug.Log(targetSticker.name + " TARGET");
-
-            this.details.ownedStickers.Add(targetSticker);
-        
-            foreach (Sticker sticker in this.details.ownedStickers)
-            {
-                
-                Debug.Log(sticker.name);
-            
-                if(sticker.price != 0) // dont add the free stickers to the database because
-                    // it might be subjected to changes in the future (free sticker rotations basically)
-                    stickers.Add(sticker.name);
-            }
-        
-       
-            /*
-             *
-             *  Below is for the structure of the firebase database.
-             *
-             *  Github Documentation Link:
-             */
-            stickersDict.Add("stickers", stickers);
-
-            
-        /*
-        *
-        *
-        *  Connect to the firebase and update.
-        */
-                
-            FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
-            DocumentReference docRef = db.Collection("users").Document(uuid);
-        
-            Dictionary<string, object> update = new Dictionary<string, object>();
-
-
-
-            update.Add("details", stickersDict);
-
-
-
-            
-            
-            docRef.SetAsync(update, SetOptions.MergeAll);
+            updateField = "avatars";
+            playerStoreObjectList = this.details.ownedAvatars;
         }
+        else
+        {
+            playerStoreObjectList = this.details.ownedStickers;
+          
+        }
+
+        playerStoreObjectList.Add(targetStoreObj);
+    
+        foreach (StoreObject storeItem in playerStoreObjectList)
+        {
+            
+            Debug.Log(storeItem.name);
+        
+            if(storeItem.price != 0) // dont add the free stickers to the database because
+                // it might be subjected to changes in the future (free sticker rotations basically)
+            
+                storeItems.Add(storeItem.name);
+        }
+    
+   
+        /*
+         *
+         *  Below is for the structure of the firebase database.
+         *
+         *  Github Documentation Link:
+         */
+        storeItemsDict.Add(updateField, storeItems);
+
+        
+    /*
+    *
+    *
+    *  Connect to the firebase and update.
+    */
+            
+        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+        DocumentReference docRef = db.Collection("users").Document(uuid);
+    
+        Dictionary<string, object> update = new Dictionary<string, object>();
+
+
+
+        update.Add("details", storeItemsDict);
+
+
+
+        
+        
+        docRef.SetAsync(update, SetOptions.MergeAll);
+        
         
         
        

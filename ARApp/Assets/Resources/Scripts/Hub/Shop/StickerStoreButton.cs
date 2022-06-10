@@ -10,25 +10,20 @@ public class StickerStoreButton : MonoBehaviour
 {
 
 
-    private enum StoreItemType
-    {
-        STICKER
-    }
-    
     private Button _button;
 
-    [SerializeField]
-    private StoreItemType _storeItemType;
+
+    private StorePopulator storePopulator;
 
     private GameManager _gameManager;
 
-    private StickerStore stickerStore;
+    private StoreIcon storeItem;
 
     private PointsManager _pointsManager;
     // Start is called before the first frame update
     void Start()
     {
-        stickerStore = GetComponent<StickerStore>();
+        storeItem = GetComponent<StoreIcon>();
         _gameManager = GameManager.Instance;
         
         _button = GetComponent<Button>();
@@ -36,8 +31,8 @@ public class StickerStoreButton : MonoBehaviour
         _button.onClick.AddListener(OnStorePurchase);
 
         _pointsManager = FindObjectOfType<PointsManager>();
-        
 
+        storePopulator = FindObjectOfType<StorePopulator>();
 
     }
 
@@ -53,40 +48,45 @@ public class StickerStoreButton : MonoBehaviour
         string collectionName = "";
         string documentName = "";
         
-        if (_storeItemType == StoreItemType.STICKER)
+ 
+            
+        if (storeItem.owned)
         {
-            
-            if (stickerStore.owned)
-            {
-                return; // dont buy sticker
-            }
+            return; // dont buy sticker
+        }
 
-            if (_gameManager.user.details.points < stickerStore.sticker.price) // not enough money
-            {
-            
-                ErrorPopupManager.GeneratePopup("Not enough points to buy this!");
-                return;
-            }
-            
-            collectionName = "users";
-            documentName = _gameManager.user.uuid;
-
-
-            int newPoints = _gameManager.user.details.points -
-                            stickerStore.sticker.price;
-            
-            _pointsManager.UpdatePointsText(newPoints); // update the new points visually
-     
-            
-            _gameManager.user.UpdatePlayerDetails(newPoints, User.UpdateType.POINTS); // update the database with the new deducted points
-
-            stickerStore.owned = true;
-
-            stickerStore.UpdateStickerStatus();
+        if (_gameManager.user.details.points < storeItem.sticker.price) // not enough money
+        {
+        
+            ErrorPopupManager.GeneratePopup("Not enough points to buy this!");
+            return;
         }
         
+        collectionName = "users";
+        documentName = _gameManager.user.uuid;
+
+
+        int newPoints = _gameManager.user.details.points -
+                        storeItem.sticker.price;
         
-        _gameManager.user.UpdatePlayerDetails(stickerStore.sticker, User.UpdateType.STICKER);
+        _pointsManager.UpdatePointsText(newPoints); // update the new points visually
+ 
+        
+        _gameManager.user.UpdatePlayerDetails(newPoints, User.UpdateType.POINTS); // update the database with the new deducted points
+
+        storeItem.owned = true;
+
+        storeItem.UpdateStoreItemStatus();
+
+
+        User.UpdateType updateType = User.UpdateType.STICKER;
+
+        if (storePopulator.storeType == StorePopulator.StoreType.AVATAR)
+        {
+            updateType = User.UpdateType.AVATAR;
+        }
+
+        _gameManager.user.UpdatePlayerDetails(storeItem.sticker,updateType);
         
         
 

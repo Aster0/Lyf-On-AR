@@ -53,7 +53,7 @@ public class Quest : ScriptableObject
 
 
         public int rewardAmount; // for pts & exp rewards
-        public Sticker targetedStickerReward; // for sticker rewards
+        public StoreObject targetedStickerReward; // for sticker rewards
         
         public enum RewardType  // what type is the reward going to be?
         {

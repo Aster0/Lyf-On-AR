@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // GITHUB DOCUMENTATION ISSUE FOUND HERE: https://github.com/Aster0/Lyf-On-AR/issues/12
-public class StickerStore : MonoBehaviour
+public class StoreIcon : MonoBehaviour
 {
 
     [SerializeField]
@@ -14,20 +14,20 @@ public class StickerStore : MonoBehaviour
     [SerializeField]
     private Image icon;
     
-    public Sticker sticker { get; set; }
+    public StoreObject sticker { get; set; }
 
     public bool owned { get; set; }
 
-    public void UpdateStickerStoreIcon(Sticker sticker, bool owned)
+    public void UpdateStoreIcon(StoreObject storeObj, bool owned)
     {
-        nameText.text = sticker.name.Replace("Sticker", "");
+        nameText.text = storeObj.name.Replace("Sticker", "").Replace("Avatar", "");
 
-        this.sticker = sticker;
+        this.sticker = storeObj;
 
         this.owned = owned;
         
         if(!owned)
-            priceText.text = sticker.price.ToString();
+            priceText.text = storeObj.price.ToString();
         else
         {
             priceText.text = "OWNED";
@@ -35,10 +35,10 @@ public class StickerStore : MonoBehaviour
             Destroy(GetComponent<Button>());
         }
 
-        icon.sprite = sticker.stickerSprite;
+        icon.sprite = storeObj.stickerSprite;
     }
 
-    public void UpdateStickerStatus()
+    public void UpdateStoreItemStatus()
     {
         priceText.text = "OWNED";
     }

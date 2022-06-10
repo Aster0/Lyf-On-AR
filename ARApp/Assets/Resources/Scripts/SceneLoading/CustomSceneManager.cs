@@ -26,7 +26,7 @@ public class CustomSceneManager : MonoBehaviour
         string currentPath = SceneManager.GetActiveScene().path;
         
         AsyncOperation loadingScene = SceneManager.LoadSceneAsync("Resources/Scenes/LoadingScreen", LoadSceneMode.Additive);
-
+        // load a loading scene async, added on the current scene (ADDICTIVE load)
 
 
 
@@ -34,15 +34,16 @@ public class CustomSceneManager : MonoBehaviour
        
         
        
-        AsyncOperation scene = SceneManager.LoadSceneAsync(scenePath, LoadSceneMode.Additive);
+        AsyncOperation scene = SceneManager.LoadSceneAsync(scenePath, LoadSceneMode.Additive); 
+        // load the target scene async, added on the current scene (ADDICTIVE load)
 
         
         scene.allowSceneActivation = false;
 
-        while (scene.progress < 0.9f || loadingScene.progress < 0.9f)
+        while (scene.progress < 0.9f || loadingScene.progress < 0.9f) // if the scene has not loaded finish
         {
             
-            await Task.Delay(100);
+            await Task.Delay(100); // delay to make the loading more believable.
            
 
 

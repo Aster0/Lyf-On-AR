@@ -178,8 +178,8 @@ public class LoginSessionManager : MonoBehaviour
             details.level = int.Parse(detailsDict["level"].ToString());
 
 
-            details.ownedStickers = new List<Sticker>();
-
+            details.ownedStickers = new List<StoreObject>();
+            details.ownedAvatars = new List<StoreObject>();
             
             try
             {
@@ -189,13 +189,14 @@ public class LoginSessionManager : MonoBehaviour
 
                 foreach (string stickerName in stickerList)
                 {
-                    Sticker sticker = UnityEngine.Resources.Load("Stickers/StickersObject/" + stickerName,
-                        typeof(Sticker)) as Sticker;
+                    StoreObject sticker = UnityEngine.Resources.Load("StoreItems/Objects/" + stickerName,
+                        typeof(StoreObject)) as StoreObject;
                 
-                    Debug.Log(sticker + " STICKER");
                     
-                    details.ownedStickers.Add(sticker);
+                    if(sticker.storeType == StorePopulator.StoreType.STICKER) // if it's indeed a sticker
+                        details.ownedStickers.Add(sticker);
                 }
+                
                 
                 
 
@@ -204,17 +205,53 @@ public class LoginSessionManager : MonoBehaviour
             {
                 // no stickers found
             }
+            
+            try
+            {
+                List<object> avatarList = detailsDict["avatars"] as List<object>;
 
-            Object[] stickers = 
-                UnityEngine.Resources.LoadAll("Stickers/StickersObject/");
+         
 
-            foreach (Object obj in stickers)
+                foreach (string avatarName in avatarList)
+                {
+                    StoreObject avatar = UnityEngine.Resources.Load("StoreItems/Objects/" + avatarName,
+                        typeof(StoreObject)) as StoreObject;
+                
+                    
+                    if(avatar.storeType == StorePopulator.StoreType.AVATAR) // if it's indeed a sticker
+                        details.ownedAvatars.Add(avatar);
+                }
+                
+                
+                
+
+            }
+            catch (Exception e)
+            {
+                // no avatars found
+            }
+
+            Object[] storeObject = 
+                UnityEngine.Resources.LoadAll("StoreItems/Objects/");
+
+            foreach (Object obj in storeObject)
             {
 
-                Sticker sticker = (Sticker) obj;
-                
-                if(sticker.price == 0) 
-                    details.ownedStickers.Add(sticker);
+             
+                StoreObject storeObj = (StoreObject) obj;
+
+                if (storeObj.price == 0)
+                {
+
+                    List<StoreObject> targetPlayerInventory;
+                    if (storeObj.storeType == StorePopulator.StoreType.STICKER)
+                        targetPlayerInventory = details.ownedStickers;
+                    else
+                        targetPlayerInventory = details.ownedAvatars;
+                    
+                    targetPlayerInventory.Add(storeObj);
+                }
+                 
             }
 
             

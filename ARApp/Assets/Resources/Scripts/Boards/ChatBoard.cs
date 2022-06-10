@@ -25,7 +25,7 @@ namespace Resources.Scripts.Boards
             if (message.StartsWith("STICKER//"))
             {
                 Sprite sprite = 
-                    UnityEngine.Resources.Load("Stickers/" + message.Replace("STICKER//", ""),
+                    UnityEngine.Resources.Load("StoreItems/" + message.Replace("STICKER//", ""),
                             typeof(Sprite))
                         as Sprite;
                 
