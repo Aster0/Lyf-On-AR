@@ -13,11 +13,16 @@ public class AvatarIcon : MonoBehaviour
 
     public StoreObject avatarStoredInfo { get; set; }
 
+    private GameManager _gameManager;
 
-    private void Start()
+
+    private void Awake()
     {
+        _gameManager = GameManager.Instance;
         outline = GetComponent<Outline>();
         GetComponent<Button>().onClick.AddListener(OnAvatarSelect);
+      
+        
 
         avatarPopulator = FindObjectOfType<AvatarPopulator>();
     }
@@ -38,7 +43,14 @@ public class AvatarIcon : MonoBehaviour
 
             if (avatarPopulator.saveButton.interactable == false) // previously non interactable because nothing was selected
             {
+                
+
                 avatarPopulator.saveButton.interactable = true; // now something is selected so we can enable the save.
+            }
+            else // if interactable is currently true already
+            {
+                if(_gameManager.user.details.currentAvatar.name.Equals(avatarStoredInfo.name)) // if the player chooses the current avatar, we don't need them to save again.
+                    avatarPopulator.saveButton.interactable = false; // so we set the interactable to false so the player cant press.
             }
         }
             

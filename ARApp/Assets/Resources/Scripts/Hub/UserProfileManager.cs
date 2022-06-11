@@ -21,7 +21,8 @@ public class UserProfileManager : MonoBehaviour
     [SerializeField] private Image avatarImage;
 
     private User user;
-    
+
+    private GameManager gameManager;
     
 
 
@@ -34,6 +35,8 @@ public class UserProfileManager : MonoBehaviour
     {
 
         user = GameManager.Instance.user;
+        
+        gameManager = GameManager.Instance;
         
         usernameText.text = user.username;
         levelText.text = user.details.level.ToString();
@@ -56,6 +59,8 @@ public class UserProfileManager : MonoBehaviour
 
     public void UpdateAvatar()
     {
+       
+        Debug.Log(user.details.currentAvatar.name);
         if (user.details.currentAvatar != null)
         {
             avatarImage.sprite = user.details.currentAvatar.sprite;

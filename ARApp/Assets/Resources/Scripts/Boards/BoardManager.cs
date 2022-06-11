@@ -5,10 +5,16 @@ using Firebase.Extensions;
 using Firebase.Firestore;
 using Resources.Scripts.Boards;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoardManager : MonoBehaviour
 {
 
+    [SerializeField]
+    private ScrollRect scrollRect;
+
+    [SerializeField]
+    private Button scrollToBottomButton;
 
     public string boardName;
 
@@ -22,10 +28,16 @@ public class BoardManager : MonoBehaviour
     {
         _gameManager = GameManager.Instance;
 
-
+        scrollToBottomButton.onClick.AddListener(ScrollToBottom);
+        
         CacheBoard();
 
 
+    }
+
+    private void ScrollToBottom()
+    {
+        scrollRect.verticalNormalizedPosition = 0f;
     }
     
     
@@ -100,19 +112,42 @@ public class BoardManager : MonoBehaviour
 
                     DocumentSnapshot snapshot = task.Result;
                     Dictionary<string, object> userDictionary = snapshot.ToDictionary();
+
+
+                    try 
+                    {
+                        // see if the player has an avatar first
+                        Dictionary<string, object> userDetails = userDictionary["details"] as Dictionary<string, object>;
+                        
+                        if(userDetails != null) // null check
+                            chatBoard.BuildChatBoard(userDictionary["username"].ToString(),
+                                chat["contents"].ToString(), userDetails["current_avatar"].ToString()); // load with player avatar
                     
+                    }
+                    catch (KeyNotFoundException avatarNotFound) // if the player has no avatar
+                    {
+                        chatBoard.BuildChatBoard(userDictionary["username"].ToString(),
+                            chat["contents"].ToString()); // load with no avatar as player do not have an avatar
                     
-                    chatBoard.BuildChatBoard(userDictionary["username"].ToString(),
-                        chat["contents"].ToString());
+                    }
+
+              
+               
+                   
+                    // make sure the chat is finished building, then scroll to the bottom.
+                    // this means that every new chat that is added (i.e. send), will bring the chat to the bottom too.
+                    ScrollToBottom();
                     
                 });
          
 
-                
+          
                 
                 chatBoardObject.transform.localScale = new Vector3(1, 1, 1);
                 chatBoardObject.transform.localPosition = new Vector3(0, 0, -13);
                 chatBoardObject.transform.localRotation = Quaternion.Euler(new Vector3(0,0));
+                
+               
             }
                 
      

@@ -23,9 +23,7 @@ public class SendChat : MonoBehaviour
 
     [SerializeField]
     private TMP_InputField chatInput;
-
-    [SerializeField]
-    private BoardManager _boardManager;
+    
 
     private GameManager _gameManager;
 
@@ -53,8 +51,6 @@ public class SendChat : MonoBehaviour
         if (messageType == MessageType.STICKER)
         {
             chatModifier = "STICKER//" + image.sprite.name;
-
-            _boardManager = GameObject.FindObjectOfType<BoardManager>();
             
 
             GameObject.Find("Stickers").SetActive(false);

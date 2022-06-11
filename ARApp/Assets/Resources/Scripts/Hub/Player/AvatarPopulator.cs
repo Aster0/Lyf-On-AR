@@ -48,6 +48,21 @@ public class AvatarPopulator : MonoBehaviour
             // from the current newly instantiated game object
             
             avatarIcon.UpdateAvatarIcon(storeObject);
+
+            if (_gameManager.user.details.currentAvatar != null) // has a current avatar already,
+            {
+                // we highlight it visually to show.
+
+                if (_gameManager.user.details.currentAvatar.name.Equals(storeObject.name)) // if the current iterated avatar matches the current avatar
+                {
+                    // we can highlight as we know which one to highlight now.
+                    
+                    avatarIcon.ToggleOutline();
+                    currentlySelectedAvatar = avatarIcon;  // make sure the system updates
+                    // which is the currently selected avatar in the menu as well,
+                    // so we can remove the outline when they choose another avatar.
+                }
+            }
             
         }
 
@@ -57,14 +72,18 @@ public class AvatarPopulator : MonoBehaviour
 
     private void OnSave() // on avatar saved
     {
-        if (currentlySelectedAvatar != null)
+        if (currentlySelectedAvatar != null) // if its not null, (null check)
         {
             _gameManager.user.UpdatePlayerDetails(currentlySelectedAvatar.avatarStoredInfo.name,
-                User.UpdateType.CURRENT_AVATAR);
+                User.UpdateType.CURRENT_AVATAR); // update firebase 
 
-            _gameManager.user.details.currentAvatar = currentlySelectedAvatar.avatarStoredInfo;
+            Debug.Log(currentlySelectedAvatar.avatarStoredInfo.name +  " SELECTED");
+            _gameManager.user.details.currentAvatar = currentlySelectedAvatar.avatarStoredInfo; 
+            // update locally with the new avatar
+            Debug.Log(_gameManager.user.details.currentAvatar.name + " CURRENT!");
             
-            userProfileManager.UpdateAvatar();
+            userProfileManager.UpdateAvatar(); // update the avatar in the hub screen visually
+            saveButton.interactable = false; // reset back to false.
         }
     }
 }

@@ -145,18 +145,25 @@ public class LoginSessionManager : MonoBehaviour
         
         Firebase.Auth.FirebaseUser user = auth.CurrentUser;
         
+        
         DocumentReference docRef = db.Collection("users").Document(user.UserId); // we loop the user document, targeting the logged in user's id
         docRef.Listen(snapshot => {
             
             Debug.Log("Callback received document snapshot.");
             Debug.Log(String.Format("Document data for {0} document:", snapshot.Id));
 
-            User user = new User(); // make a new instance of User object
+            User user;
+            
+            if(_gameManager.user == null) // if haven't been made before
+                user = new User(); // make a new instance of User object
+            else
+                user = _gameManager.user; // if made before, use the old instance.
+            
             
             // and basically save all the details into the User Object. below.
             // we save things like quests, stickers, points, levels, etc.
             
-            user.uuid = snapshot.Id;
+            user.uuid = snapshot.Id; // get the snapshot id as the user's uuid
             
             Dictionary<string, object> dict = snapshot.ToDictionary();
 
@@ -171,6 +178,14 @@ public class LoginSessionManager : MonoBehaviour
             Dictionary<string, object> detailsDict = dict["details"] 
                 as Dictionary<string, object>;
 
+
+            if (detailsDict == null) // null check
+            {
+                Debug.Log("User Details not found. Returning."); // log a warning
+                return; 
+            }
+            
+             
 
             details.exp = int.Parse(detailsDict["exp"].ToString());
 
@@ -318,7 +333,7 @@ public class LoginSessionManager : MonoBehaviour
                 {
 
            
-                    Debug.Log(questUID + questDict[questUID] +  " DICT") ;
+                    Debug.Log(this.gameObject) ;
                     
                     foreach (Quest quest in _gameManager.quests)
                     {
