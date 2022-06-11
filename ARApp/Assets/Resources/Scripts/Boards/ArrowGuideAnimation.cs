@@ -38,6 +38,6 @@ public class ArrowGuideAnimation : MonoBehaviour
         }
 
         _canvasGroup.alpha = transparentFloat;
-        Debug.Log(transparentFloat);
+        
     }
 }
