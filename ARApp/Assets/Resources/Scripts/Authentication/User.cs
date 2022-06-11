@@ -10,13 +10,15 @@ public class User {
 
 
 
-    public struct Details
+    public class Details
     {
         public int points { get; set; }
         public int exp { get; set; }
         public int level { get; set; }
         
         public int maxExp { get; set; }
+        
+        public StoreObject currentAvatar { get; set; }
 
 
         public List<StoreObject> ownedStickers { get; set; }
@@ -45,9 +47,12 @@ public class User {
         LEVEL,
         STICKER,
         QUEST,
-        AVATAR
+        AVATAR,
+        CURRENT_AVATAR
     }
 
+    
+    // for saving ints
     public void UpdatePlayerDetails(int newValue, UpdateType updateType)
     {
 
@@ -92,6 +97,47 @@ public class User {
         docRef.SetAsync(update, SetOptions.MergeAll);
     }
     
+    // for saving strings
+    public void UpdatePlayerDetails(string newValue, UpdateType updateType)
+    {
+
+        string updateField = "";
+        
+        /*
+         *
+         *  updateField checks which details field we are updating, whether it
+         *  being points, EXP, level, etc. (makes it dynamic)
+         */
+ 
+        if (updateType == UpdateType.CURRENT_AVATAR) // currently only current avatar updates a string
+        {
+            updateField = "current_avatar";
+        }
+        
+        
+        /*
+         *
+         *
+         *  Connect to the firebase and update.
+         */
+                
+        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+        DocumentReference docRef = db.Collection("users").Document(uuid);
+        
+        Dictionary<string, object> update = new Dictionary<string, object>();
+        
+        
+        
+        update.Add("details", new Dictionary<string, object>()
+        {
+            
+            {updateField, newValue}
+        });
+        
+        docRef.SetAsync(update, SetOptions.MergeAll);
+    }
+    
+    // for saving quests
     public void UpdatePlayerDetails(List<Quest> newValue, UpdateType updateType)
     {
 

@@ -18,7 +18,11 @@ public class UserProfileManager : MonoBehaviour
     private Slider expSlider;
 
 
+    [SerializeField] private Image avatarImage;
+
     private User user;
+    
+    
 
 
 
@@ -45,6 +49,17 @@ public class UserProfileManager : MonoBehaviour
 
         coinsText.text = user.details.points.ToString();
 
+
+        UpdateAvatar();
+
+    }
+
+    public void UpdateAvatar()
+    {
+        if (user.details.currentAvatar != null)
+        {
+            avatarImage.sprite = user.details.currentAvatar.sprite;
+        }
     }
 
 

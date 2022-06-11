@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3318ce75422bee43893c7c7dc1d7fe0, type: 3}
-  m_Name: KnightAvatar
+  m_Name: SquidManAvatar
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: cae1908ef32d7457e8c9d9e772b22e61, type: 3}
-  price: 182
-  purchasable: 0
+  sprite: {fileID: 21300000, guid: a667e29f7de1b8046994bea7e3a9eaf9, type: 3}
+  price: 290
+  purchasable: 1
   storeType: 1

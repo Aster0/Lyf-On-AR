@@ -177,6 +177,8 @@ public class LoginSessionManager : MonoBehaviour
             details.points = int.Parse(detailsDict["points"].ToString());
             details.level = int.Parse(detailsDict["level"].ToString());
 
+   
+        
 
             details.ownedStickers = new List<StoreObject>();
             details.ownedAvatars = new List<StoreObject>();
@@ -233,6 +235,8 @@ public class LoginSessionManager : MonoBehaviour
 
             Object[] storeObject = 
                 UnityEngine.Resources.LoadAll("StoreItems/Objects/");
+            
+            _gameManager.listOfAllAvatars.Clear();
 
             foreach (Object obj in storeObject)
             {
@@ -246,6 +250,21 @@ public class LoginSessionManager : MonoBehaviour
                     _gameManager.listOfAllAvatars.Add(storeObj);
                     
                     Debug.Log(storeObj + " STORE OBJECT");
+                    
+                    try
+                    {
+                        string currentAvatar = detailsDict["current_avatar"].ToString();
+
+                        if (storeObj.name.Equals(currentAvatar)) // search through which avatar matches the current avatar name
+                        {
+                            details.currentAvatar = storeObj; // then save an instance of it.
+                        }
+                       
+                    }
+                    catch (KeyNotFoundException noCurrentAvatar) // if the user has no current avatar, no nothing.
+                    {
+               
+                    }
                 }
                 
                 if (storeObj.price == 0)
