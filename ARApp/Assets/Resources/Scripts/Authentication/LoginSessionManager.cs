@@ -192,6 +192,78 @@ public class LoginSessionManager : MonoBehaviour
             details.points = int.Parse(detailsDict["points"].ToString());
             details.level = int.Parse(detailsDict["level"].ToString());
 
+
+            details.friends = new List<User>();
+            
+            try
+            {
+                List<object> friendList = detailsDict["friends"] as List<object>;
+
+         
+
+                foreach (string friendUUID in friendList)
+                {
+
+                
+                    
+                    FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+                    DocumentReference docRef = db.Collection("users").Document(
+                        friendUUID.ToString());
+
+                    docRef.GetSnapshotAsync().ContinueWithOnMainThread((task) =>
+                    {
+
+                        DocumentSnapshot snapshot1 = task.Result;
+
+                        if (snapshot1.Exists)
+                        {
+                            Dictionary<string, object> userDictionary = snapshot.ToDictionary();
+                        
+                            User friendUser = new User();
+
+                            friendUser.username = userDictionary["username"].ToString();
+                            friendUser.uuid = friendUUID;
+                            friendUser.details = new User.Details();
+                            
+                        
+                            Dictionary<string, object> userDetails = userDictionary["details"] as Dictionary<string, object>;
+
+                            try
+                            {
+                                if (userDetails != null)
+                                {
+                                    StoreObject avatarObject = UnityEngine.Resources.Load("StoreItems/Objects/" + 
+                                            userDetails["current_avatar"],
+                                            typeof(StoreObject))
+                                        as StoreObject; // try to fetch the user's avatar if they have one
+
+                                    friendUser.details.currentAvatar = avatarObject;
+                                }
+                      
+                            }
+                            catch (KeyNotFoundException e) // if not, we catch the error since the user do not have an avatar.
+                            {
+                           
+                            }
+                            
+                            user.details.friends.Add(friendUser);
+                        }
+                        
+                    });
+
+                   
+                }
+                
+                
+                
+
+            }
+            catch (KeyNotFoundException e)
+            {
+                // no friends found
+            }
+
+
    
         
 

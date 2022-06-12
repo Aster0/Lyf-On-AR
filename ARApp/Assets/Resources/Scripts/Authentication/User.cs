@@ -24,6 +24,8 @@ public class User {
         public List<StoreObject> ownedStickers { get; set; }
         public List<StoreObject> ownedAvatars { get; set; }
         
+        public List<User> friends { get; set; }
+        
         public List<Quest> inProgressQuests { get; set; }
         
         
@@ -48,7 +50,8 @@ public class User {
         STICKER,
         QUEST,
         AVATAR,
-        CURRENT_AVATAR
+        CURRENT_AVATAR,
+        FRIENDS
     }
 
     
@@ -197,7 +200,7 @@ public class User {
     }
 
     
-    public void UpdatePlayerDetails(StoreObject targetStoreObj, UpdateType updateType) // for stickers
+    public void UpdatePlayerDetails(StoreObject targetStoreObj, UpdateType updateType) // for store items
     {
 
       
@@ -268,6 +271,74 @@ public class User {
 
 
         update.Add("details", storeItemsDict);
+
+
+
+        
+        
+        docRef.SetAsync(update, SetOptions.MergeAll);
+        
+        
+        
+       
+    }
+    
+    public void UpdatePlayerDetails(User targetUser, UpdateType updateType) // for adding friends
+    {
+
+      
+        
+        /*
+         *
+         *  updateField checks which details field we are updating, whether it
+         *  being points, EXP, level, etc. (makes it dynamic)
+         */
+
+
+
+        Dictionary<string, List<object>> usersDict = new Dictionary<string, List<object>>();
+
+        List<object> users = new List<object>();
+        
+        
+        string updateField = "friends";
+
+        List<User> friendsList = this.details.friends;
+
+
+        friendsList.Add(targetUser);
+    
+    
+        foreach (User user in friendsList)
+        {
+            
+            users.Add(user.uuid);
+        }
+    
+   
+        /*
+         *
+         *  Below is for the structure of the firebase database.
+         *
+         *  Github Documentation Link:
+         */
+        usersDict.Add(updateField, users);
+
+        
+    /*
+    *
+    *
+    *  Connect to the firebase and update.
+    */
+            
+        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+        DocumentReference docRef = db.Collection("users").Document(uuid);
+    
+        Dictionary<string, object> update = new Dictionary<string, object>();
+
+
+
+        update.Add("details", usersDict);
 
 
 

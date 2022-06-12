@@ -867,7 +867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &385217690
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3577,7 +3577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1654741579
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4661,6 +4661,8 @@ MonoBehaviour:
   questClaimedPrefab: {fileID: 6504897296004040445, guid: b12a590c5e7afac488f250ab8dfbb21a,
     type: 3}
   avatarPrefab: {fileID: 6658926683674058560, guid: 414a332b70bc4bf4f89c3a940f5eeb9d,
+    type: 3}
+  friendPopupPrefab: {fileID: 5187777778198584058, guid: a3b6c93da9e760649863c2138f8beafe,
     type: 3}
   listOfAllAvatars: []
 --- !u!1 &2013275514

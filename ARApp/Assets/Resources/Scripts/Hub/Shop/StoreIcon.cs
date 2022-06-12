@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,9 +21,12 @@ public class StoreIcon : MonoBehaviour
 
     public void UpdateStoreIcon(StoreObject storeObj, bool owned)
     {
-        nameText.text = storeObj.name.Replace("Sticker", "").Replace("Avatar", "");
-
+        nameText.text =    Regex.Replace(storeObj.name.Replace("Sticker", "").Replace("Avatar", ""), 
+            "([a-z])([A-Z])", "$1 $2"); // putting a space before capital letters using Regex
         this.sticker = storeObj;
+        
+
+   
 
         this.owned = owned;
         

@@ -9,7 +9,7 @@ public class BoardTracking : MonoBehaviour
     private GameManager _gameManager;
 
     private GameObject arrowGuidance;
-    private void Start()
+    private void Awake()
     {
         _gameManager = GameManager.Instance;
         

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -80,7 +81,9 @@ public class AvatarIcon : MonoBehaviour
         }
 
 
-        nameText.text = obj.name.Replace("Avatar", "");
+        nameText.text = Regex.Replace(obj.name.Replace("Avatar", ""), 
+            "([a-z])([A-Z])", "$1 $2"); // putting a space before capital letters using Regex
+        
         icon.sprite = obj.sprite;
 
         avatarStoredInfo = obj;

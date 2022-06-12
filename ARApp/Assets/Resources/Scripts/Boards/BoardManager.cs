@@ -114,6 +114,7 @@ public class BoardManager : MonoBehaviour
                     Dictionary<string, object> userDictionary = snapshot.ToDictionary();
 
 
+             
                     try 
                     {
                         // see if the player has an avatar first
@@ -121,13 +122,13 @@ public class BoardManager : MonoBehaviour
                         
                         if(userDetails != null) // null check
                             chatBoard.BuildChatBoard(userDictionary["username"].ToString(),
-                                chat["contents"].ToString(), userDetails["current_avatar"].ToString()); // load with player avatar
+                                chat["contents"].ToString(), chat["user"].ToString(), userDetails["current_avatar"].ToString()); // load with player avatar
                     
                     }
                     catch (KeyNotFoundException avatarNotFound) // if the player has no avatar
                     {
                         chatBoard.BuildChatBoard(userDictionary["username"].ToString(),
-                            chat["contents"].ToString()); // load with no avatar as player do not have an avatar
+                            chat["contents"].ToString(), chat["user"].ToString()); // load with no avatar as player do not have an avatar
                     
                     }
 
