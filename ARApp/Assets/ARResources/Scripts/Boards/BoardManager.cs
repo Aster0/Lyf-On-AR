@@ -21,7 +21,7 @@ public class BoardManager : MonoBehaviour
 
     [SerializeField] private GameObject chatBoardPrefab;
 
-    
+    private ListenerRegistration listener;
 
     private GameManager _gameManager;
     private void Start()
@@ -30,7 +30,7 @@ public class BoardManager : MonoBehaviour
 
         scrollToBottomButton.onClick.AddListener(ScrollToBottom);
         
-        CacheBoard();
+      
 
 
     }
@@ -46,7 +46,7 @@ public class BoardManager : MonoBehaviour
     {
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         DocumentReference docRef = db.Collection("boards").Document(boardName);
-        docRef.Listen(snapshot => {
+        listener = docRef.Listen(snapshot => {
 
 
 
@@ -156,6 +156,15 @@ public class BoardManager : MonoBehaviour
 
 
         });
+        
+        
     }
-    
+
+
+    public void OnBoardHide()
+    {
+        if(listener != null)
+            listener.Dispose(); // dispose the async listener
+    }
+
 }

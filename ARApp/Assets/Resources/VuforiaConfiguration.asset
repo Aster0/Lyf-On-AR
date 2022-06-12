@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2067402452, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
+  m_Script: {fileID: -2067402452, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
     vuforiaLicenseKey: AX2wjNb/////AAABmb5tiGtsEkCLu6rdxM+L0vgWddd3iLiIXHGW0MTdOYXrXuCTPHth08PdyQZX8Cp8RcmlSK2EAdyoCT/YCyxasfPOG+mONaA44HIIv/tbrvAMFvUgmWBjeKJvCZ3PtdXNvAFaXuzEfKc3ePOZVJRRzK6sY52oa6yXdppacYQnHuHyMEaa0f28kkmKCfywNWEYrMfwaBp+1hEZ6zv8dZv0sYW4AVp1GRKm2uL+mS70JNN2AaQJ8RtG46m+2URp6bLYq8sPO4JZ82I8rwCXNJkQPDp5z79Dd3K1aRQDgrLUY5MyTRvXRr5SEl/ndhuFHp61gzYniN+KGwmx9x1SdoD64kcLG1+ROX1rthdgFSZfzMJo
-    ufoLicenseKey: QVhKdkNoTC8vLy8vQUFBQUtNVGE5bDVUWGttaHZoQXBYTXRSTXZhSVNTV0hpbVZiV2NKU1hFRC9QSnNFYmdNNVQ1SDdrZEVJY01NVUJNcVVrQ215MTk2bncxdFV1S3V5enVXMlZ1ZlJoby9UU3FDdkswTDczK3RFM1MwTW10RXoxUndTbFpkYkxabldVQ2lvSmQ3a3ByWm9FSmp0UVNFeDlaWFNwM1UzZjU5RHg0NVJmc05ZcjhLVGxKaG1GbEh6SzExa0dGRmZOK1BQMUtUREVkQ2Y2ZzA3aER2Z1gvMllFbWdZSm9mR29ndjk0NVJuRzQvOWZib3FLd2NMVFYyZlNUZjJHdDFNM1FuNDVCbEgrRndKcEZjbEVpTmxtRjZwMklORW1FUHpkTmsyOE95Qkh2ZlRTNVFNYWgyKzhwR2p2bDMxQjNFNlRJQml3WEwvV01UbVVqZ2FFRUFYNFlubktlOHFaQWRtVWNLS2tuaE5VK2FmQWVXTWZwejI=
+    ufoLicenseKey: QVhiM0Y1Ly8vLy8vQUFBQUtPbnFIeHJFSGs1N3VrMlg4U050eVBzK2pkOFZxMDhrazlwYjBsYS9aZUIxQlV1ckZWcWt0ZllSQWpnT2tIRlY2VzdOMDRTRjNYRUhmbTF5L1BnYlB4eWdHWEF6RUNheXowc3dyNVNYa2ozdERuRjhka1FpOHRscHdkMDcrcEJEY1FjTjNJcUM1bEgwOTYzQkdZdjRsQStRb0hSQU9nRGthelp5TlY0WHVwWU9EaE05NWw5bXAzbnBDMjM5MWZBWXBFdEdiL2loTDNab3N4b25ZblhjK1JtSS9wLzRoTDIwVGhmTXR6WFJNYkpUTXZLZzJoQ0N0TEJXNEptZ0pSOUtSdStzQWM3QjVNOWFFMGVHQ1dUT1VRSUUweEpiZC9ZL2cvS29iNDhBRXdQOGFwbWR5NmRWU0FHU2psVzRZY2FEU2Zud3J1ZHhucVNmSUZiajNTUnIzM0lKVlFIaW1rL0oyOGNFeDdyekcySXg=
     delayedInitialization: 0
     cameraFocusModeSetting: 2
     cameraDeviceModeSetting: -1
@@ -25,7 +25,7 @@ MonoBehaviour:
     modelTargetRecoWhileExtendedTracked: 1
     shareRecordingsInITunes: 0
     version: 10.5.5
-    eulaAcceptedVersions: '{"Values":["","0.0","10.5"]}'
+    eulaAcceptedVersions: '{"Values":["0.0","10.5"]}'
   database:
     disableModelExtraction: 0
   shaders:
