@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
 
     public GameObject popupPrefab, chatBoardPrefab, chatBoardStickerPrefab, stickerPrefab, stickerStorePrefab, 
-        questDefaultPrefab, questInProgressPrefab, questClaimPrefab, questClaimedPrefab, avatarPrefab, friendPopupPrefab;
+        questDefaultPrefab, questInProgressPrefab, questClaimPrefab, questClaimedPrefab, avatarPrefab, friendPopupPrefab, friendPrefab;
     
     public User user { get; set; }
 

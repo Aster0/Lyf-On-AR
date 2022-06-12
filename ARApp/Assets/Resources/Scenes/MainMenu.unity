@@ -4664,6 +4664,8 @@ MonoBehaviour:
     type: 3}
   friendPopupPrefab: {fileID: 5187777778198584058, guid: a3b6c93da9e760649863c2138f8beafe,
     type: 3}
+  friendPrefab: {fileID: 3142882565380901274, guid: 8d26c4725efacc045816f6c13fab5afe,
+    type: 3}
   listOfAllAvatars: []
 --- !u!1 &2013275514
 GameObject:

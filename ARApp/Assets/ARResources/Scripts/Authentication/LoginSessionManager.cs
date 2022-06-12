@@ -206,19 +206,20 @@ public class LoginSessionManager : MonoBehaviour
 
                 
                     
-                    FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
-                    DocumentReference docRef = db.Collection("users").Document(
+                    DocumentReference docRef1 = db.Collection("users").Document(
                         friendUUID.ToString());
 
-                    docRef.GetSnapshotAsync().ContinueWithOnMainThread((task) =>
+                    docRef1.GetSnapshotAsync().ContinueWithOnMainThread((task) =>
                     {
 
                         DocumentSnapshot snapshot1 = task.Result;
 
                         if (snapshot1.Exists)
                         {
-                            Dictionary<string, object> userDictionary = snapshot.ToDictionary();
+                            Dictionary<string, object> userDictionary = snapshot1.ToDictionary();
                         
+                         
+                            Debug.Log(userDictionary["username"] + " FRIEND");
                             User friendUser = new User();
 
                             friendUser.username = userDictionary["username"].ToString();
