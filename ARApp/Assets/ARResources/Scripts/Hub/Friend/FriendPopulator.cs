@@ -1,5 +1,6 @@
 ﻿
 using System;
+using TMPro;
 using UnityEngine;
 
 public class FriendPopulator : MonoBehaviour
@@ -7,6 +8,8 @@ public class FriendPopulator : MonoBehaviour
     private bool startedBefore = false;
 
     private GameManager _gameManager;
+
+    [SerializeField] private TextMeshProUGUI noFriendsText;
 
     private int count;
     private void Awake()
@@ -46,5 +49,8 @@ public class FriendPopulator : MonoBehaviour
 
 
         }
+        
+        if(count > 1) // means there's friends added
+            noFriendsText.gameObject.SetActive(false); // dont show the no friends text
     }
 }
