@@ -29,34 +29,38 @@ namespace Resources.Scripts.Boards
         private void OnChatClick()
         {
 
-            AddFriendButton previousFriendObject = FindObjectOfType<AddFriendButton>();
-
-            if (previousFriendObject != null)
+            if (currentUser.uuid != _gameManager.user.uuid) // check if its not yourself, so u cant add yourself
             {
-                Destroy(previousFriendObject.gameObject);
-            }
-            
-            GameObject friendGameObject = Instantiate(_gameManager.friendPopupPrefab, new Vector3(0,0),
-                Quaternion.identity); // create a new game object icon
-            
-            friendGameObject.transform.SetParent(this.gameObject.transform, false); // update the parent
+                AddFriendButton previousFriendObject = FindObjectOfType<AddFriendButton>();
 
-            AddFriendButton addFriendButton = friendGameObject.GetComponent<AddFriendButton>();
-            
-            Debug.Log(currentUser.uuid + " CURRENT");
-            foreach (User friendUser in _gameManager.user.details.friends)
-            {
-                if (friendUser.uuid.Equals(currentUser.uuid)) // if we found a friend that matches this we're trying to add
+                if (previousFriendObject != null)
                 {
-                
-                    addFriendButton.GetComponent<Button>().interactable = false; // make it so the user can't add again. as the friend is already added.
-                    break; // break out of the iteration.
+                    Destroy(previousFriendObject.gameObject);
                 }
+            
+                GameObject friendGameObject = Instantiate(_gameManager.friendPopupPrefab, new Vector3(0,0),
+                    Quaternion.identity); // create a new game object icon
+            
+                friendGameObject.transform.SetParent(this.gameObject.transform, false); // update the parent
+
+                AddFriendButton addFriendButton = friendGameObject.GetComponent<AddFriendButton>();
+            
+                Debug.Log(currentUser.uuid + " CURRENT");
+                foreach (User friendUser in _gameManager.user.details.friends)
+                {
+                    if (friendUser.uuid.Equals(currentUser.uuid)) // if we found a friend that matches this we're trying to add
+                    {
+                
+                        addFriendButton.GetComponent<Button>().interactable = false; // make it so the user can't add again. as the friend is already added.
+                        break; // break out of the iteration.
+                    }
+                }
+            
+                addFriendButton.user = currentUser;
+
+                friendGameObject.transform.localPosition = new Vector3(370, 50);
             }
             
-            addFriendButton.user = currentUser;
-
-            friendGameObject.transform.localPosition = new Vector3(370, 50);
         }
 
         public void BuildChatBoard(string username, string message, string uuid, string avatarName) // overloaded method

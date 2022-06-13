@@ -20,8 +20,8 @@ MonoBehaviour:
   uid: SBIKE
   reward:
     rewardIcon: {fileID: 21300000, guid: 0f21c15598e524bfcae8cb6bd65c3440, type: 3}
-    rewardType: 2
+    rewardType: 3
     rewardAmount: 1
-    targetedStickerReward: {fileID: 11400000, guid: 0a2ea787060a7ef49813eed1ef893193,
+    targetedStoreReward: {fileID: 11400000, guid: 9a810deb09c79354996533747ecad321,
       type: 2}
   questType: 0

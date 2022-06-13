@@ -12,15 +12,30 @@ public class ScanQuestManager : MonoBehaviour
     [SerializeField]
     private string questUID;
 
+    private GameObject arrowGuidance;
+    private void Awake()
+    {
+        arrowGuidance = GameObject.Find("ArrowGuide");
+        
+    }
     private void Start()
     {
         _gameManager = GameManager.Instance;
     }
 
+    public void ToggleArrowGuide(bool on)
+    {
+    
+        arrowGuidance.SetActive(on);
+    }
+    
     public void OnScanImage()
     {
+        Debug.Log("Toggled Scan");
+       
         foreach (Quest quest in _gameManager.user.details.inProgressQuests)
         {
+           
             if (quest.questType == Quest.QuestType.SCAN)
             {
 

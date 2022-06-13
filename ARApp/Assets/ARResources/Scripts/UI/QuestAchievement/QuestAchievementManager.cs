@@ -64,6 +64,7 @@ public class QuestAchievementManager : MonoBehaviour
 
     public void UpdateQuest(Quest quest)
     {
+
         if (!quest.claimed) // still in progress, not claimed yet.
         {
             quest.currentValue += 1;

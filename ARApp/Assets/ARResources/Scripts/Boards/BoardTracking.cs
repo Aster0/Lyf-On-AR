@@ -20,9 +20,10 @@ public class BoardTracking : MonoBehaviour
 
     public string currentBoardName { get; set; }
 
-    public void ToggleArrowGuide()
+    public void ToggleArrowGuide(bool on)
     {
-        arrowGuidance.SetActive(!arrowGuidance.activeSelf);
+    
+        arrowGuidance.SetActive(on);
     }
     
 

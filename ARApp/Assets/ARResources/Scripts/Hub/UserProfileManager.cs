@@ -60,7 +60,7 @@ public class UserProfileManager : MonoBehaviour
     public void UpdateAvatar()
     {
        
-        Debug.Log(user.details.currentAvatar.name);
+   
         if (user.details.currentAvatar != null)
         {
             avatarImage.sprite = user.details.currentAvatar.sprite;

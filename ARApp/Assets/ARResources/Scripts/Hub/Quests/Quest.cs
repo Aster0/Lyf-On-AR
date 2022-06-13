@@ -53,13 +53,14 @@ public class Quest : ScriptableObject
 
 
         public int rewardAmount; // for pts & exp rewards
-        public StoreObject targetedStickerReward; // for sticker rewards
+        public StoreObject targetedStoreReward; // for store related rewards
         
         public enum RewardType  // what type is the reward going to be?
         {
             EXP,
             POINTS,
-            STICKER
+            STICKER,
+            AVATAR
         }
 
 
@@ -84,9 +85,19 @@ public class Quest : ScriptableObject
             {
                 // give sticker
                 
-                Debug.Log(targetedStickerReward.name + " TARGETED STICKER");
-                GameManager.Instance.user.UpdatePlayerDetails(targetedStickerReward,
-                    User.UpdateType.STICKER);
+                if(targetedStoreReward.storeType == StorePopulator.StoreType.STICKER)
+                    GameManager.Instance.user.UpdatePlayerDetails(targetedStoreReward,
+                        User.UpdateType.STICKER);
+                
+                
+            }
+            else if (rewardType == RewardType.AVATAR)
+            {
+                // give avatar
+                
+                if(targetedStoreReward.storeType == StorePopulator.StoreType.AVATAR)
+                    GameManager.Instance.user.UpdatePlayerDetails(targetedStoreReward,
+                        User.UpdateType.AVATAR);
                 
                 
             }

@@ -48,10 +48,14 @@ public class AvatarIcon : MonoBehaviour
 
                 avatarPopulator.saveButton.interactable = true; // now something is selected so we can enable the save.
             }
-           
-            if(_gameManager.user.details.currentAvatar.name.Equals(avatarStoredInfo.name)) // if the player chooses the current avatar, we don't need them to save again.
-                avatarPopulator.saveButton.interactable = false; // so we set the interactable to false so the player cant press.
-        
+
+            if (_gameManager.user.details.currentAvatar != null) // currently has a avatar already
+            {
+                if(_gameManager.user.details.currentAvatar.name.Equals(avatarStoredInfo.name)) // if the player chooses the current avatar, we don't need them to save again.
+                    avatarPopulator.saveButton.interactable = false; // so we set the interactable to false so the player cant press.
+
+            }
+                
         }
             
         

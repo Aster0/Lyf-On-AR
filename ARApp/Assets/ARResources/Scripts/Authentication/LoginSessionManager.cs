@@ -406,7 +406,7 @@ public class LoginSessionManager : MonoBehaviour
                 {
 
            
-                    Debug.Log(this.gameObject) ;
+                    Debug.Log(questUID + " TEST") ;
                     
                     foreach (Quest quest in _gameManager.quests)
                     {

@@ -175,6 +175,7 @@ public class User {
 
         foreach (Quest quest in newValue)
         {
+            Debug.Log(quest.uid);
             string status = "IN_PROGRESS";
 
             if (quest.claimed)

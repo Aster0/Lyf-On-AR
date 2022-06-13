@@ -64,10 +64,12 @@ public class QuestManager : MonoBehaviour
           
       
             _gameManager.user.details.inProgressQuests.Add(quest);
+   
             quest.IsInProgress = true;
 
             _gameManager.user.UpdatePlayerDetails(_gameManager.user.details.inProgressQuests,
                 User.UpdateType.QUEST);
+            Debug.Log(_gameManager.user.details.inProgressQuests.Count + " COUNT");
 
 
         
