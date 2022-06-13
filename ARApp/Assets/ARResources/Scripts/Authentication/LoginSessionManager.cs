@@ -351,7 +351,12 @@ public class LoginSessionManager : MonoBehaviour
                     }
                     catch (KeyNotFoundException noCurrentAvatar) // if the user has no current avatar, no nothing.
                     {
-               
+                        // then we use default avatar
+                        StoreObject defaultAvatarObject = UnityEngine.Resources.Load("StoreItems/Objects/EarthAvatar",
+                                typeof(StoreObject))
+                            as StoreObject;
+
+                        details.currentAvatar = defaultAvatarObject;
                     }
                 }
                 
