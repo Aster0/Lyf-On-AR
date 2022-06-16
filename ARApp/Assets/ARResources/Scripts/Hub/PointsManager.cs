@@ -12,7 +12,7 @@ public class PointsManager : MonoBehaviour
 
 
 
-    public void UpdatePointsText(int points)
+    public void UpdatePointsText(int points) // this is used when the points need to be updated visually. nothing much.
     {
         pointsText.text = points.ToString();
     }

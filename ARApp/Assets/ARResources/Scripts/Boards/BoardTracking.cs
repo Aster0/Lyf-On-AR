@@ -27,7 +27,7 @@ public class BoardTracking : MonoBehaviour
     }
     
 
-    public void ChangeCurrentBoard(string boardName)
+    public void ChangeCurrentBoard(string boardName) // tracking which board we're currently on.
     {
         _gameManager.currentBoardName = boardName;
     }

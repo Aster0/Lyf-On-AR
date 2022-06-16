@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// GITHUB DOCUMENTATION: https://github.com/Aster0/Lyf-On-AR/issues/3
 public class QuestAchievementManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI descriptionText;
@@ -69,9 +70,9 @@ public class QuestAchievementManager : MonoBehaviour
         {
             quest.currentValue += 1;
 
-            if (quest.currentValue >= quest.maxValue)
+            if (quest.currentValue >= quest.maxValue) // if reached the quest quota, 
             {
-               this.ShowAchievement(quest.description);
+               this.ShowAchievement(quest.description); // we show a visual prompt to the user that the quest is completed.
             }
         }
          

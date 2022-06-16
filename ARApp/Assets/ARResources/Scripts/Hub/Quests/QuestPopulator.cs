@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// ALL THE POPULATOR CLASS IS VERY SIMILAR TO HOW THE STORE IS POPULATED.
+
+// STORE SYSTEM GITHUB: https://github.com/Aster0/Lyf-On-AR/issues/18
+
 public class QuestPopulator : MonoBehaviour
 {
 
@@ -19,7 +23,7 @@ public class QuestPopulator : MonoBehaviour
         
     }
 
-    public void PopulateQuests()
+    public void PopulateQuests() // used to populate the hub's quest section.
     {
 
 
@@ -29,11 +33,13 @@ public class QuestPopulator : MonoBehaviour
         }
         
         
-        foreach (Quest quest in _gameManager.quests)
+        foreach (Quest quest in _gameManager.quests) // we iterate through all the existing scriptable object quests, read
+        // https://github.com/Aster0/Lyf-On-AR/issues/3 for how the quest system works.
         {
 
             GameObject questObject;
 
+            // then we check if and populate accordingly if its in progress, or not claimed, or done, etc.
 
             if (quest.IsInProgress)
             {
@@ -71,7 +77,7 @@ public class QuestPopulator : MonoBehaviour
 
             QuestManager questManager = questObject.GetComponent<QuestManager>();
             
-            questManager.UpdateQuestVisual(quest);
+            questManager.UpdateQuestVisual(quest); // updating the visual appearance of the quest icon.
         }
    
     }

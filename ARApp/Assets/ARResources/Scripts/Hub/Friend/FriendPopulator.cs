@@ -3,6 +3,9 @@ using System;
 using TMPro;
 using UnityEngine;
 
+// ALL THE POPULATOR CLASS IS VERY SIMILAR TO HOW THE STORE IS POPULATED.
+
+// STORE SYSTEM GITHUB: https://github.com/Aster0/Lyf-On-AR/issues/18
 public class FriendPopulator : MonoBehaviour
 {
     private bool startedBefore = false;

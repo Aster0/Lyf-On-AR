@@ -5,7 +5,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 
-// GITHUB DOCUMENTATION ISSUE FOUND HERE: https://github.com/Aster0/Lyf-On-AR/issues/5
+// GITHUB DOCUMENTATION ISSUE FOUND HERE: https://github.com/Aster0/Lyf-On-AR/issues/18
 public class StickerStoreButton : MonoBehaviour
 {
 
@@ -39,8 +39,6 @@ public class StickerStoreButton : MonoBehaviour
 
     private void OnStorePurchase() // when the player buys an item
     {
-
-        Debug.Log("PRESSED");
 
         
         

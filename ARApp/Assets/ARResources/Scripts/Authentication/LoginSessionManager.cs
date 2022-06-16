@@ -411,7 +411,7 @@ public class LoginSessionManager : MonoBehaviour
                 {
 
            
-                    Debug.Log(questUID + " TEST") ;
+              
                     
                     foreach (Quest quest in _gameManager.quests)
                     {
@@ -429,6 +429,7 @@ public class LoginSessionManager : MonoBehaviour
                             if (questValues["status"].ToString().Equals("CLAIMED"))
                             {
                                 quest.claimed = true;
+                                break; // as this quest is claimed, we dont want to add to the inprogress quests.
                             }
 
                             Debug.Log(quest.currentValue + " CURRENT VALUE");

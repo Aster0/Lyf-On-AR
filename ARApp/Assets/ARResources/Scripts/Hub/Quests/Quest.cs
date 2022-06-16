@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// GITHUB DOCUMENTATION: https://github.com/Aster0/Lyf-On-AR/issues/3
 [CreateAssetMenu(fileName = "New Quest", menuName = "LyfOn/Quest/New Quest", order = 1)]
 public class Quest : ScriptableObject
 {

@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// GITHUB DOCUMENTATION: https://github.com/Aster0/Lyf-On-AR/issues/3
 public class QuestManager : MonoBehaviour
 {
 
@@ -55,7 +56,18 @@ public class QuestManager : MonoBehaviour
     {
         if (!quest.IsInProgress)
         {
-            if (_gameManager.user.details.inProgressQuests.Count >= 3)
+
+            int questCount = 0;
+            
+            foreach (Quest quest in _gameManager.user.details.inProgressQuests)
+            {
+                if (!quest.claimed) // count the not claimed quests
+                {
+                    questCount++; // increase the quest count
+                }
+            }
+            
+            if (questCount >= 3)
             {
                 ErrorPopupManager.GeneratePopup("Can't claim more than 3 quests!");
 
@@ -63,13 +75,13 @@ public class QuestManager : MonoBehaviour
             }
           
       
-            _gameManager.user.details.inProgressQuests.Add(quest);
+            _gameManager.user.details.inProgressQuests.Add(quest); // add the quest into the currently in progress list
    
-            quest.IsInProgress = true;
+            quest.IsInProgress = true; // make it so we know this specific quest is currently in progress
 
             _gameManager.user.UpdatePlayerDetails(_gameManager.user.details.inProgressQuests,
-                User.UpdateType.QUEST);
-            Debug.Log(_gameManager.user.details.inProgressQuests.Count + " COUNT");
+                User.UpdateType.QUEST); // update firebase.
+         
 
 
         
@@ -79,21 +91,25 @@ public class QuestManager : MonoBehaviour
         }
         else
         {
-            if (quest.currentValue >= quest.maxValue)
+            if (quest.currentValue >= quest.maxValue) // if its time to claim instead,
             {
-                quest.reward.OnRewardClaim();
+                quest.reward.OnRewardClaim(); // we claim the reward
                 
+                // and reset the progress and set claim to true so we can't claim it again.
                 quest.IsInProgress = false;
                 quest.claimed = true;
+                
 
                 _gameManager.user.UpdatePlayerDetails(_gameManager.user.details.inProgressQuests,
-                    User.UpdateType.QUEST);
+                    User.UpdateType.QUEST); // update firebase.
+                
+                
                 
             }
         }
         
         GameObject.FindObjectOfType<QuestPopulator>().PopulateQuests();
         
-        Debug.Log(this.gameObject.name);
+     
     }
 }

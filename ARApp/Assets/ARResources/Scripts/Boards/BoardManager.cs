@@ -7,6 +7,9 @@ using Resources.Scripts.Boards;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+// GITHUB DOCUMENTATION: https://github.com/Aster0/Lyf-On-AR/issues/17
+
 public class BoardManager : MonoBehaviour
 {
 

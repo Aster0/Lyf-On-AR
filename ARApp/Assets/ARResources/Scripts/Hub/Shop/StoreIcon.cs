@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// GITHUB DOCUMENTATION ISSUE FOUND HERE: https://github.com/Aster0/Lyf-On-AR/issues/12
+// GITHUB DOCUMENTATION ISSUE FOUND HERE: https://github.com/Aster0/Lyf-On-AR/issues/18
 public class StoreIcon : MonoBehaviour
 {
 
@@ -19,8 +19,8 @@ public class StoreIcon : MonoBehaviour
 
     public bool owned { get; set; }
 
-    public void UpdateStoreIcon(StoreObject storeObj, bool owned)
-    {
+    public void UpdateStoreIcon(StoreObject storeObj, bool owned) // to update the store visual appearance of the store item.
+    { 
         nameText.text =    Regex.Replace(storeObj.name.Replace("Sticker", "").Replace("Avatar", ""), 
             "([a-z])([A-Z])", "$1 $2"); // putting a space before capital letters using Regex
         this.sticker = storeObj;

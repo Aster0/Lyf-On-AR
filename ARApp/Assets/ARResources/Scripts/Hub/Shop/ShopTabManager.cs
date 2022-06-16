@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// GITHUB DOCUMENTATION ISSUE FOUND HERE: https://github.com/Aster0/Lyf-On-AR/issues/18
 public class ShopTabManager : MonoBehaviour
 {
 
@@ -37,7 +38,7 @@ public class ShopTabManager : MonoBehaviour
     }
 
 
-    private void UnfocusTab()
+    private void UnfocusTab() // when the other tab should be unfocused as it's switched away
     {
         otherTab.tabFocusedImage.color = otherTab.unfocusedColor;
     }

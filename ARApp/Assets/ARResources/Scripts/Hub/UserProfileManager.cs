@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// GITHUB DOCUMENTATION: https://github.com/Aster0/Lyf-On-AR/issues/19
 public class UserProfileManager : MonoBehaviour
 {
 
@@ -34,6 +35,7 @@ public class UserProfileManager : MonoBehaviour
     void Start()
     {
 
+        // these are to update the visual of the user profile, e.g., name of player, level of player, etc.
         user = GameManager.Instance.user;
         
         gameManager = GameManager.Instance;
@@ -57,7 +59,7 @@ public class UserProfileManager : MonoBehaviour
 
     }
 
-    public void UpdateAvatar()
+    public void UpdateAvatar() // to update the user's avatar visually
     {
        
    

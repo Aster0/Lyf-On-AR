@@ -15,7 +15,7 @@ public class StartScanningButton : MonoBehaviour
         _button.onClick.AddListener(OnButtonPressed);
     }
 
-    private void OnButtonPressed()
+    private void OnButtonPressed() // event when u press the StartScanning button, just switches scene to the AR view.
     {
         CustomSceneManager.LoadScene("Resources/Scenes/ARScene");
     }

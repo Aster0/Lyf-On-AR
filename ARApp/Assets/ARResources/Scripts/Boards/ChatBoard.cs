@@ -65,6 +65,9 @@ namespace Resources.Scripts.Boards
 
         public void BuildChatBoard(string username, string message, string uuid, string avatarName) // overloaded method
         {
+            
+            // This method is to build the visual aspect of each chat bubble. 
+            // Updating username, avatar, etc.
             usernameText.text = username;
 
             currentUser = new User();
@@ -109,6 +112,9 @@ namespace Resources.Scripts.Boards
         
         public void BuildChatBoard(string username, string message, string uuid) // overloaded method
         {
+            // This method is to build the visual aspect of each chat bubble. 
+            // Updating username, sticker message, etc
+            
             usernameText.text = username;
             
             currentUser = new User();

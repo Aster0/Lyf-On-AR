@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+// GITHUB DOCUMENTATION: https://github.com/Aster0/Lyf-On-AR/issues/21
 public class SendChat : MonoBehaviour
 {
 
@@ -48,21 +50,23 @@ public class SendChat : MonoBehaviour
         
         string chatModifier;
 
-        if (messageType == MessageType.STICKER)
+        if (messageType == MessageType.STICKER) // if its a sticker message
         {
-            chatModifier = "STICKER//" + image.sprite.name;
+            chatModifier = "STICKER//" + image.sprite.name; // we place a STICKER// so we can know in the future.
             
 
-            GameObject.Find("Stickers").SetActive(false);
+            GameObject.Find("Stickers").SetActive(false); 
         }
-        else 
+        else  // normal message
         {
             
             if (chatInput.text.Length == 0) // empty
                 return; // dont send empty text
             
-            chatModifier = chatInput.text;
+            chatModifier = chatInput.text; // just input whatever we typed normally
         }
+        
+        // to update the firebase below
         
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         DocumentReference docRef = db.Collection("boards").Document(_gameManager.currentBoardName);
@@ -93,26 +97,26 @@ public class SendChat : MonoBehaviour
         docRef.SetAsync(update, SetOptions.MergeAll);
 
 
-        ChatQuestEvent();
+        ChatQuestEvent(); // for quest event handler
         
-        if(messageType == MessageType.DEFAULT)
-            chatInput.text = "";
+        if(messageType == MessageType.DEFAULT) // if its a text message (not sticker)
+            chatInput.text = ""; // we reset the chat input to empty so they can easily type a new message without deleting the last.
     }
 
 
     private void ChatQuestEvent()
     {
-        foreach (Quest quest in _gameManager.user.details.inProgressQuests)
+        foreach (Quest quest in _gameManager.user.details.inProgressQuests) // loop through all in progress chats
         {
             if (quest.questType == Quest.QuestType.CHAT)
             {
-                QuestAchievementManager.Instance.UpdateQuest(quest);
-               
+                QuestAchievementManager.Instance.UpdateQuest(quest); // update the quest value as we have just chatted
+                // GITHUB DOCUMENTATION: https://github.com/Aster0/Lyf-On-AR/issues/3
             }
         }
         
         _gameManager.user.UpdatePlayerDetails(_gameManager.user.details.inProgressQuests,
-            User.UpdateType.QUEST);
+            User.UpdateType.QUEST); // update in firebase.
     }
 
 

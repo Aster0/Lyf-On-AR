@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+// ALL THE POPULATOR CLASS IS VERY SIMILAR TO HOW THE STORE IS POPULATED.
+
+// STORE SYSTEM GITHUB: https://github.com/Aster0/Lyf-On-AR/issues/18
 public class AvatarPopulator : MonoBehaviour
 {
 
@@ -26,7 +30,7 @@ public class AvatarPopulator : MonoBehaviour
    
     }
 
-    private void OnEnable()
+    private void OnEnable() // when the game object is enabled (set active)
     {
         if (startedBefore)
         {
@@ -36,7 +40,7 @@ public class AvatarPopulator : MonoBehaviour
             }
         }
         
-        foreach (StoreObject storeObject in _gameManager.listOfAllAvatars)
+        foreach (StoreObject storeObject in _gameManager.listOfAllAvatars) // we loop through all the possible avatars
         {
             GameObject avatarGameObject = Instantiate(_gameManager.avatarPrefab, new Vector3(0,0),
                 Quaternion.identity); // create a new game object icon

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChatQuest1
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f61494dc02ff64d149386da96f08e1cd, type: 3}
-  currentValue: 5
+  currentValue: 0
   maxValue: 5
   name: Send 5 Chats!
   description: Send 5 Chats!
@@ -22,5 +22,5 @@ MonoBehaviour:
     rewardIcon: {fileID: 21300000, guid: 56d6624c6f0014a7c8870cbbf2c74cbe, type: 3}
     rewardType: 1
     rewardAmount: 50
-    targetedStickerReward: {fileID: 0}
+    targetedStoreReward: {fileID: 0}
   questType: 1
