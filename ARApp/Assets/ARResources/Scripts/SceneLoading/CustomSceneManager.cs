@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+// GITHUB DOCUMENTATION: https://github.com/Aster0/Lyf-On-AR/issues/23
 public class CustomSceneManager : MonoBehaviour
 {
     
